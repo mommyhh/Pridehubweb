@@ -9,8 +9,11 @@
     :root {
       --bg-dark: #121214;
       --bg-card: #1e1f22;
+      --bg-header: #2b2d31;
       --accent-purple: #5865F2;
       --accent-pink: #eb459e;
+      --accent-yellow: #FFDD00;
+      --accent-green: #2be675;
       --text-main: #f2f3f5;
       --text-muted: #949ba4;
       --rainbow-gradient: linear-gradient(90deg, #ff4b4b, #ff8533, #ffcc00, #2be675, #3399ff, #9933ff);
@@ -29,16 +32,36 @@
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
     /* Header & Navigation */
     header {
-      background-color: #2b2d31;
+      background-color: var(--bg-header);
       border-bottom: 3px solid transparent;
       border-image: var(--rainbow-gradient) 1;
       position: sticky;
       top: 0;
       z-index: 1000;
+    }
+
+    .top-bar {
+      background-color: #111214;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      padding: 6px 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #1f2023;
+    }
+
+    .sa-time-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent-pink);
+      font-weight: 600;
     }
 
     .nav-container {
@@ -47,11 +70,11 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem;
+      padding: 0.8rem 1rem;
     }
 
     .logo {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       font-weight: bold;
       background: var(--rainbow-gradient);
       -webkit-background-clip: text;
@@ -59,9 +82,9 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      text-decoration: none;
     }
 
-    /* Logo Image Style */
     .logo-img {
       width: 40px;
       height: 40px;
@@ -69,10 +92,11 @@
       object-fit: cover;
     }
 
+    /* Desktop Navigation */
     nav ul {
       display: flex;
       list-style: none;
-      gap: 15px;
+      gap: 8px;
       flex-wrap: wrap;
     }
 
@@ -80,10 +104,12 @@
       color: var(--text-main);
       text-decoration: none;
       font-weight: 500;
-      padding: 6px 12px;
+      font-size: 0.95rem;
+      padding: 6px 10px;
       border-radius: 4px;
       transition: background 0.2s, color 0.2s;
       cursor: pointer;
+      display: inline-block;
     }
 
     nav a:hover, nav a.active {
@@ -91,8 +117,14 @@
       color: white;
     }
 
+    .nav-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
     .btn-join {
-      background-color: #5865F2;
+      background-color: var(--accent-purple);
       color: white;
       padding: 8px 16px;
       border-radius: 20px;
@@ -102,6 +134,7 @@
       align-items: center;
       gap: 8px;
       transition: transform 0.2s, background-color 0.2s;
+      white-space: nowrap;
     }
 
     .btn-join:hover {
@@ -110,17 +143,19 @@
     }
 
     .btn-coffee {
-      background-color: #FFDD00;
+      background-color: var(--accent-yellow);
       color: #000000;
-      padding: 10px 20px;
-      border-radius: 8px;
+      padding: 8px 14px;
+      border-radius: 20px;
       text-decoration: none;
       font-weight: bold;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 6px;
       transition: transform 0.2s, opacity 0.2s;
+      white-space: nowrap;
+      font-size: 0.9rem;
     }
 
     .btn-coffee:hover {
@@ -128,12 +163,23 @@
       transform: translateY(-2px);
     }
 
+    /* Mobile Menu Toggle Button */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-main);
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 5px;
+    }
+
     /* Main Content Area */
     main {
       flex: 1;
       max-width: 1200px;
       width: 100%;
-      margin: 2rem auto;
+      margin: 1.5rem auto;
       padding: 0 1rem;
     }
 
@@ -151,7 +197,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Grid Layouts & Cards */
+    /* Grid Layouts & Responsive Cards */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -164,6 +210,11 @@
       border-radius: 8px;
       padding: 1.5rem;
       border: 1px solid #2b2d31;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .card:hover {
+      border-color: var(--accent-purple);
     }
 
     .card h3 {
@@ -171,7 +222,7 @@
       color: var(--accent-pink);
     }
 
-    /* Rules List */
+    /* Rainbow Styled Rules List */
     .rules-list {
       display: flex;
       flex-direction: column;
@@ -181,41 +232,115 @@
 
     .rule-item {
       background-color: var(--bg-card);
-      padding: 1rem;
-      border-left: 4px solid var(--accent-purple);
+      padding: 1rem 1.2rem;
       border-radius: 0 8px 8px 0;
+      border-left: 5px solid transparent;
+      border-image: var(--rainbow-gradient) 1;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .rule-item:hover {
+      transform: translateX(4px);
+      background-color: #242529;
     }
 
     .rule-item h3 {
       margin-bottom: 5px;
+      font-size: 1.1rem;
+      background: var(--rainbow-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+
+    .rule-item p {
+      color: var(--text-main);
+      font-size: 0.95rem;
+      line-height: 1.4;
     }
 
     /* Hero Banner */
     .hero {
       text-align: center;
       padding: 3rem 1rem;
-      background: linear-gradient(180deg, rgba(88,101,242,0.1) 0%, rgba(18,18,20,0) 100%);
+      background: linear-gradient(180deg, rgba(88,101,242,0.15) 0%, rgba(18,18,20,0) 100%);
       border-radius: 12px;
       margin-bottom: 2rem;
+      border: 1px solid rgba(88, 101, 242, 0.2);
     }
 
     .hero h1 {
-      font-size: 2.5rem;
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
       margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Custom Role Badge Display */
+    .role-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      margin: 4px 2px;
+      background-color: #2b2d31;
+    }
+
+    /* FAQ Accordion Styling */
+    .faq-item {
+      background-color: var(--bg-card);
+      border-radius: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #2b2d31;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      width: 100%;
+      padding: 1rem 1.2rem;
+      background: none;
+      border: none;
+      color: var(--text-main);
+      text-align: left;
+      font-size: 1rem;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .faq-answer {
+      padding: 0 1.2rem 1rem 1.2rem;
+      color: var(--text-muted);
+      display: none;
+      line-height: 1.5;
+    }
+
+    .faq-item.active .faq-answer {
+      display: block;
     }
 
     /* Footer */
     footer {
-      background-color: #2b2d31;
+      background-color: var(--bg-header);
       padding: 2rem 1rem;
       text-align: center;
       color: var(--text-muted);
       margin-top: auto;
+      border-top: 1px solid #1f2023;
     }
 
     .footer-links {
       display: flex;
       justify-content: center;
+      flex-wrap: wrap;
       gap: 15px;
       margin-bottom: 1rem;
     }
@@ -223,22 +348,78 @@
     .footer-links a {
       color: var(--text-muted);
       text-decoration: none;
+      cursor: pointer;
     }
 
     .footer-links a:hover {
       color: var(--text-main);
     }
+
+    /* Mobile Responsive Media Queries */
+    @media (max-width: 900px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      nav {
+        display: none;
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: var(--bg-header);
+        border-bottom: 2px solid var(--accent-purple);
+        padding: 1rem;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.5);
+      }
+
+      nav.open {
+        display: block;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      nav a {
+        width: 100%;
+        padding: 10px;
+      }
+
+      .nav-container {
+        position: relative;
+      }
+
+      .top-bar {
+        flex-direction: column;
+        gap: 4px;
+        text-align: center;
+      }
+    }
   </style>
 </head>
 <body>
 
+  <div class="top-bar">
+    <span>🏳️‍🌈 Official Pride Hub Community Portal</span>
+    <span class="sa-time-badge">
+      <i class="fa-regular fa-clock"></i> South Australia Time: <span id="sa-clock">Loading...</span>
+    </span>
+  </div>
+
   <header>
     <div class="nav-container">
-      <div class="logo">
+      <a href="#" onclick="showPage('home')" class="logo">
         <img src="file_00000000d64481fbb17f65f91ad75c8d.png" alt="Pride Hub Logo" class="logo-img">
         Pride Hub
-      </div>
-      <nav>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation Menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <nav id="navMenu">
         <ul>
           <li><a onclick="showPage('home')" class="nav-link active" id="link-home">Home</a></li>
           <li><a onclick="showPage('rules')" class="nav-link" id="link-rules">Rules</a></li>
@@ -252,7 +433,8 @@
           <li><a onclick="showPage('contact')" class="nav-link" id="link-contact">Support</a></li>
         </ul>
       </nav>
-      <div style="display: flex; gap: 10px; align-items: center;">
+
+      <div class="nav-actions">
         <a href="https://buymeacoffee.com/pridehub" target="_blank" class="btn-coffee" title="Buy Us a Coffee">
           <i class="fa-solid fa-mug-hot"></i> Coffee
         </a>
@@ -268,32 +450,38 @@
     <section id="home" class="page active">
       <div class="hero">
         <h1>Welcome to Pride Hub! 🏳️‍🌈</h1>
-        <p>Our goal is to create a safe, friendly, and inclusive community where everyone is welcome.</p>
+        <p>A safe, friendly, and inclusive global Discord community for LGBTQIA+ individuals, allies, and supporters.</p>
         <br>
-        <a href="https://discord.gg/PGTDgtwEkG" target="_blank" class="btn-join" style="padding: 12px 24px; font-size: 1.1rem;">
-          Join the Server Now
-        </a>
+        <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+          <a href="https://discord.gg/PGTDgtwEkG" target="_blank" class="btn-join" style="padding: 12px 24px; font-size: 1.1rem;">
+            <i class="fa-brands fa-discord"></i> Join Discord Server
+          </a>
+          <a href="https://buymeacoffee.com/pridehub" target="_blank" class="btn-coffee" style="padding: 12px 24px; font-size: 1.1rem;">
+            <i class="fa-solid fa-mug-hot"></i> Support the Community
+          </a>
+        </div>
       </div>
+
       <h2>Community Highlights</h2>
       <div class="grid">
         <div class="card">
-          <h3>Safe Space</h3>
-          <p>Zero tolerance for hate speech, harassment, or discrimination. Be yourself with complete freedom!</p>
+          <h3><i class="fa-solid fa-shield-halved"></i> Safe & Moderated Space</h3>
+          <p>Zero tolerance for hate speech, harassment, or discrimination. Be yourself in a completely judgment-free zone!</p>
         </div>
         <div class="card">
-          <h3>Active Events</h3>
-          <p>We host weekly game nights, movie screenings, art contests, and community discussions.</p>
+          <h3><i class="fa-solid fa-calendar-check"></i> Active Weekly Events</h3>
+          <p>We host game nights, movie streams, art contests, and open community discussions across multiple timezones.</p>
         </div>
         <div class="card">
-          <h3>Community Growth</h3>
-          <p>Support our growing hub and unlock unique ways to connect with active members across the globe!</p>
+          <h3><i class="fa-solid fa-heart"></i> Inclusive Identity Roles</h3>
+          <p>Express yourself with custom pronoun and orientation roles, custom colors, and profile badges in Discord.</p>
         </div>
       </div>
     </section>
 
     <section id="rules" class="page">
-      <h2>Server Rules</h2>
-      <p style="color: var(--text-muted); margin-top: 5px;">By joining the server, you agree to follow these guidelines.</p>
+      <h2>Server Rules & Guidelines 🏳️‍🌈</h2>
+      <p style="color: var(--text-muted); margin-top: 5px;">By joining Pride Hub, you agree to follow these guidelines at all times.</p>
       
       <div class="rules-list">
         <div class="rule-item"><h3>1. Respect Everyone</h3><p>Treat all members with kindness and respect. Harassment, bullying, personal attacks, discrimination, or targeting others is not allowed. Respect everyone's identity, pronouns, and chosen name.</p></div>
@@ -318,107 +506,119 @@
     </section>
 
     <section id="donate" class="page">
-      <h2>Donate to Pride Hub</h2>
-      <p style="color: var(--text-muted); margin-top: 5px;">All donations go directly towards server upgrades, event prize pools, and hosting costs.</p>
+      <h2>Support Pride Hub</h2>
+      <p style="color: var(--text-muted); margin-top: 5px;">Help keep our community online, ad-free, and safe for everyone.</p>
       <br>
       <div class="card" style="max-width: 600px; margin: 0 auto; text-align: center;">
-        <h3>Support Our Safe Space ☕</h3>
-        <p style="margin: 1rem 0;">Every contribution helps us host larger events, bring in custom Discord bots, and maintain a 24/7 safe community environment.</p>
-        <a href="https://buymeacoffee.com/pridehub" target="_blank" class="btn-coffee" style="font-size: 1.1rem; padding: 12px 24px; margin-top: 10px;">
-          <i class="fa-solid fa-mug-hot"></i> Support us on Buy Me a Coffee
+        <h3>Buy Us a Coffee ☕</h3>
+        <p style="margin: 1rem 0;">Every contribution goes directly towards server bots, event prizes, domain fees, and hosting infrastructure.</p>
+        <a href="https://buymeacoffee.com/pridehub" target="_blank" class="btn-coffee" style="font-size: 1.1rem; padding: 12px 24px;">
+          <i class="fa-solid fa-mug-hot"></i> Support via Buy Me a Coffee
         </a>
       </div>
     </section>
 
     <section id="roles" class="page">
-      <h2>Server Roles Overview</h2>
-      <p style="color: var(--text-muted); margin-top: 5px;">Discover what the various roles in our community mean.</p>
+      <h2>Server Roles & Self-Tags</h2>
+      <p style="color: var(--text-muted); margin-top: 5px;">Explore self-assignable identity roles available in our server's <code>#roles</code> channel.</p>
+      
       <div class="grid">
         <div class="card">
-          <h3 style="color: #ff4b4b;">Staff Roles</h3>
-          <p>Moderators and Administrators who keep the community safe and enforce server rules.</p>
+          <h3 style="color: #ff4b4b;">Staff & Moderation</h3>
+          <p>Assists with community safety and rule enforcement.</p>
+          <br>
+          <span class="role-badge" style="color: #ff4b4b; border: 1px solid #ff4b4b;">Server Admin</span>
+          <span class="role-badge" style="color: #3399ff; border: 1px solid #3399ff;">Moderator</span>
         </div>
         <div class="card">
-          <h3 style="color: #2be675;">Pronoun & Identity Roles</h3>
-          <p>Free self-assignable roles available via our reaction-roles channel to express your identity.</p>
+          <h3 style="color: var(--accent-green);">Pronoun Tags</h3>
+          <p>Free self-assignable pronoun roles in Discord.</p>
+          <br>
+          <span class="role-badge" style="color: var(--accent-green); border: 1px solid var(--accent-green);">He/Him</span>
+          <span class="role-badge" style="color: var(--accent-green); border: 1px solid var(--accent-green);">She/Her</span>
+          <span class="role-badge" style="color: var(--accent-green); border: 1px solid var(--accent-green);">They/Them</span>
+          <span class="role-badge" style="color: var(--accent-green); border: 1px solid var(--accent-green);">Any Pronouns</span>
         </div>
         <div class="card">
-          <h3 style="color: #eb459e;">Supporters & VIPs</h3>
-          <p>Awesome members who help keep our hub active, ad-free, and growing!</p>
+          <h3 style="color: var(--accent-pink);">Community Allies & VIPs</h3>
+          <p>Special badges for supporters and event hosts.</p>
+          <br>
+          <span class="role-badge" style="color: var(--accent-pink); border: 1px solid var(--accent-pink);">Server Booster</span>
+          <span class="role-badge" style="color: var(--accent-yellow); border: 1px solid var(--accent-yellow);">Coffee Supporter</span>
         </div>
       </div>
     </section>
 
     <section id="events" class="page">
       <h2>Upcoming Community Events</h2>
+      <p style="color: var(--text-muted); margin-top: 5px;">Event times automatically convert to local time in Discord, optimized for global & South Australia timezones!</p>
       <div class="grid">
         <div class="card">
-          <h3>Weekly Game Night</h3>
-          <p><strong>When:</strong> Every Saturday at 7:00 PM EST</p>
-          <p>Join us in Voice Chat for Jackbox, Among Us, and Roblox!</p>
+          <h3><i class="fa-solid fa-gamepad"></i> Weekly Game Night</h3>
+          <p><strong>When:</strong> Every Saturday</p>
+          <p>Join us in Voice Chat for Jackbox, Among Us, Roblox, and party games!</p>
         </div>
         <div class="card">
-          <h3>Community Movie Night</h3>
-          <p><strong>When:</strong> Bi-Weekly Friday at 8:00 PM EST</p>
-          <p>Grab your popcorn and stream top community-voted movies in stage chat.</p>
+          <h3><i class="fa-solid fa-film"></i> Community Movie Stream</h3>
+          <p><strong>When:</strong> Bi-Weekly Friday</p>
+          <p>Vote for community movies and watch together in the Stage Channel.</p>
         </div>
       </div>
     </section>
 
     <section id="announcements" class="page">
-      <h2>Latest Announcements</h2>
+      <h2>Community News</h2>
       <div class="card" style="margin-top: 1rem;">
-        <h3>Website Launch! 🎉</h3>
-        <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 10px;">Posted today by Staff</p>
-        <p>We are excited to launch our official website portal! Here you can easily check rules, donate, and keep up with community updates.</p>
+        <h3>Portal Upgrade Live! 🚀</h3>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 10px;">Posted by Staff Team</p>
+        <p>Our website portal is now fully mobile and desktop optimized with live local timezone support (South Australia ACST/ACDT) and mobile navigation menus.</p>
       </div>
     </section>
 
     <section id="gallery" class="page">
-      <h2>Community Showcase & Art</h2>
+      <h2>Community Showcase</h2>
       <div class="grid">
         <div class="card" style="text-align: center; padding: 3rem 1rem;">
-          <i class="fa-solid fa-image" style="font-size: 3rem; color: var(--text-muted); margin-bottom: 1rem;"></i>
-          <p>Community fan art and event screenshots will be showcased here!</p>
+          <i class="fa-solid fa-palette" style="font-size: 3rem; color: var(--text-muted); margin-bottom: 1rem;"></i>
+          <p>Community fan art, memes, and event screenshots are featured here!</p>
         </div>
       </div>
     </section>
 
     <section id="staff" class="page">
-      <h2>Meet the Staff Team</h2>
+      <h2>Meet the Team</h2>
       <div class="grid">
         <div class="card">
-          <h3>Server Management</h3>
-          <p>Dedicated administrators ensuring everything runs smoothly and safely behind the scenes.</p>
+          <h3>Management Team</h3>
+          <p>Dedicated admins managing community operations, server safety, and development.</p>
         </div>
         <div class="card">
           <h3>Moderation Team</h3>
-          <p>Active mods enforcing rules, handling reports, and managing community channels.</p>
+          <p>Active global moderators responding to support tickets and keeping chats friendly.</p>
         </div>
       </div>
     </section>
 
     <section id="faq" class="page">
       <h2>Frequently Asked Questions</h2>
-      <div class="rules-list">
-        <div class="rule-item">
-          <h3>How do I get custom identity roles?</h3>
-          <p>Head over to the <code>#roles</code> channel in our Discord server and click on the corresponding emojis!</p>
-        </div>
-        <div class="rule-item">
-          <h3>How do I report a rule violation?</h3>
-          <p>You can open a support ticket in <code>#support</code> or directly message any active staff member.</p>
-        </div>
+      <br>
+      <div class="faq-item">
+        <button class="faq-question">How do I get custom roles? <i class="fa-solid fa-chevron-down"></i></button>
+        <div class="faq-answer">Join our Discord server and navigate to the <code>#roles</code> channel to pick your pronoun and notification roles!</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">How do I submit art or suggestions? <i class="fa-solid fa-chevron-down"></i></button>
+        <div class="faq-answer">Post your art in <code>#creations</code> or share server ideas in <code>#suggestions</code> on Discord.</div>
       </div>
     </section>
 
     <section id="contact" class="page">
       <h2>Support & Enquiries</h2>
       <div class="card" style="max-width: 600px; margin: 1rem auto; text-align: center;">
-        <h3>Need Help?</h3>
-        <p style="margin-bottom: 1rem;">If you have questions regarding server moderation or guidelines, reach out via Discord.</p>
-        <a href="https://discord.gg/PGTDgtwEkG" target="_blank" class="btn-join" style="display: inline-flex; text-decoration: none;">
-          Open a Ticket in Discord
+        <h3>Need Assistance?</h3>
+        <p style="margin-bottom: 1rem;">Open a support ticket on Discord or get in touch with our moderation team directly.</p>
+        <a href="https://discord.gg/PGTDgtwEkG" target="_blank" class="btn-join" style="text-decoration: none;">
+          <i class="fa-brands fa-discord"></i> Open a Ticket in Discord
         </a>
       </div>
     </section>
@@ -436,30 +636,61 @@
   </footer>
 
   <script>
+    // Page Switcher Script
     function showPage(pageId) {
-      // Hide all pages
       const pages = document.querySelectorAll('.page');
       pages.forEach(page => page.classList.remove('active'));
 
-      // Remove active class from all nav links
       const navLinks = document.querySelectorAll('.nav-link');
       navLinks.forEach(link => link.classList.remove('active'));
 
-      // Show selected page
       const selectedPage = document.getElementById(pageId);
-      if (selectedPage) {
-        selectedPage.classList.add('active');
-      }
+      if (selectedPage) selectedPage.classList.add('active');
 
-      // Highlight active nav link
       const selectedLink = document.getElementById('link-' + pageId);
-      if (selectedLink) {
-        selectedLink.classList.add('active');
+      if (selectedLink) selectedLink.classList.add('active');
+
+      // Close mobile menu on page selection
+      const navMenu = document.getElementById('navMenu');
+      if (navMenu.classList.contains('open')) {
+        navMenu.classList.remove('open');
       }
 
-      // Scroll to top of page
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+
+    // Mobile Navigation Toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+
+    menuToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('open');
+    });
+
+    // FAQ Accordion Script
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    faqQuestions.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const parent = btn.parentElement;
+        parent.classList.toggle('active');
+      });
+    });
+
+    // South Australia Real-Time Clock Function
+    function updateSAClock() {
+      const options = {
+        timeZone: 'Australia/Adelaide',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true
+      };
+      const saTimeStr = new Intl.DateTimeFormat('en-AU', options).format(new Date());
+      document.getElementById('sa-clock').textContent = saTimeStr + ' (ACST/ACDT)';
+    }
+
+    setInterval(updateSAClock, 1000);
+    updateSAClock();
   </script>
 </body>
 </html>
