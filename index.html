@@ -109,6 +109,25 @@
       transform: translateY(-2px);
     }
 
+    .btn-coffee {
+      background-color: #FFDD00;
+      color: #000000;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    .btn-coffee:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+
     /* Main Content Area */
     main {
       flex: 1;
@@ -257,9 +276,14 @@
           <li><a onclick="showPage('contact')" class="nav-link" id="link-contact">Support</a></li>
         </ul>
       </nav>
-      <a href="https://discord.gg/PGTDgtwEkG" target="_blank" class="btn-join">
-        <i class="fa-brands fa-discord"></i> Join Us
-      </a>
+      <div style="display: flex; gap: 10px; align-items: center;">
+        <a href="https://buymeacoffee.com/pridehub" target="_blank" class="btn-coffee" title="Buy Us a Coffee">
+          <i class="fa-solid fa-mug-hot"></i> Coffee
+        </a>
+        <a href="https://discord.gg/PGTDgtwEkG" target="_blank" class="btn-join">
+          <i class="fa-brands fa-discord"></i> Join Us
+        </a>
+      </div>
     </div>
   </header>
 
@@ -348,14 +372,11 @@
       <p style="color: var(--text-muted); margin-top: 5px;">All donations go directly towards server upgrades, event prize pools, and hosting costs.</p>
       <br>
       <div class="card" style="max-width: 600px; margin: 0 auto; text-align: center;">
-        <h3>Support Our Safe Space</h3>
+        <h3>Support Our Safe Space ☕</h3>
         <p style="margin: 1rem 0;">Every contribution helps us host larger events, bring in custom Discord bots, and maintain a 24/7 safe community environment.</p>
-        <div class="grid" style="grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 1.5rem;">
-          <button class="btn-buy" onclick="alert('Thank you for choosing to donate $5!')">$5.00</button>
-          <button class="btn-buy" onclick="alert('Thank you for choosing to donate $10!')">$10.00</button>
-          <button class="btn-buy" onclick="alert('Thank you for choosing to donate $25!')">$25.00</button>
-        </div>
-        <button class="btn-buy" style="background-color: #2be675; color: black;" onclick="alert('Redirecting to payment gateway...')">Custom Donation Amount</button>
+        <a href="https://buymeacoffee.com/pridehub" target="_blank" class="btn-coffee" style="font-size: 1.1rem; padding: 12px 24px; margin-top: 10px;">
+          <i class="fa-solid fa-mug-hot"></i> Support us on Buy Me a Coffee
+        </a>
       </div>
     </section>
 
@@ -459,6 +480,7 @@
       <a onclick="showPage('rules')">Rules</a>
       <a onclick="showPage('shop')">Store</a>
       <a onclick="showPage('donate')">Donate</a>
+      <a href="https://buymeacoffee.com/pridehub" target="_blank">Buy Me a Coffee</a>
       <a href="https://discord.gg/PGTDgtwEkG" target="_blank">Discord Invite</a>
     </div>
     <p>&copy; Pride Hub Community. Not affiliated with Discord Inc.</p>
