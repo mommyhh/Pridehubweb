@@ -281,17 +281,6 @@
       margin: 0 auto;
     }
 
-    /* Custom Role Badge Display */
-    .role-badge {
-      display: inline-block;
-      padding: 4px 10px;
-      border-radius: 12px;
-      font-size: 0.85rem;
-      font-weight: bold;
-      margin: 4px 2px;
-      background-color: #2b2d31;
-    }
-
     /* FAQ Accordion Styling */
     .faq-item {
       background-color: var(--bg-card);
@@ -424,7 +413,7 @@
           <li><a onclick="showPage('home')" class="nav-link active" id="link-home">Home</a></li>
           <li><a onclick="showPage('rules')" class="nav-link" id="link-rules">Rules</a></li>
           <li><a onclick="showPage('donate')" class="nav-link" id="link-donate">Donate</a></li>
-          <li><a onclick="showPage('roles')" class="nav-link" id="link-roles">Roles Info</a></li>
+          <li><a onclick="showPage('resources')" class="nav-link" id="link-resources">Resources</a></li>
           <li><a onclick="showPage('events')" class="nav-link" id="link-events">Events</a></li>
           <li><a onclick="showPage('announcements')" class="nav-link" id="link-announcements">News</a></li>
           <li><a onclick="showPage('gallery')" class="nav-link" id="link-gallery">Gallery</a></li>
@@ -473,8 +462,8 @@
           <p>We host game nights, movie streams, art contests, and open community discussions across multiple timezones.</p>
         </div>
         <div class="card">
-          <h3><i class="fa-solid fa-heart"></i> Inclusive Identity Roles</h3>
-          <p>Express yourself with custom pronoun and orientation roles, custom colors, and profile badges in Discord.</p>
+          <h3><i class="fa-solid fa-book"></i> Helpful Resources</h3>
+          <p>Discover educational guides, digital wellness tips, and support services available across our hub.</p>
         </div>
       </div>
     </section>
@@ -518,33 +507,22 @@
       </div>
     </section>
 
-    <section id="roles" class="page">
-      <h2>Server Roles & Self-Tags</h2>
-      <p style="color: var(--text-muted); margin-top: 5px;">Explore self-assignable identity roles available in our server's <code>#roles</code> channel.</p>
+    <section id="resources" class="page">
+      <h2>Community Resources & Guides</h2>
+      <p style="color: var(--text-muted); margin-top: 5px;">Helpful guides, identity resources, and online safety materials for our community members.</p>
       
       <div class="grid">
         <div class="card">
-          <h3 style="color: #ff4b4b;">Staff & Moderation</h3>
-          <p>Assists with community safety and rule enforcement.</p>
-          <br>
-          <span class="role-badge" style="color: #ff4b4b; border: 1px solid #ff4b4b;">Server Admin</span>
-          <span class="role-badge" style="color: #3399ff; border: 1px solid #3399ff;">Moderator</span>
+          <h3 style="color: var(--accent-pink);"><i class="fa-solid fa-heart-pulse"></i> Support Networks</h3>
+          <p>Access free, confidential community support services and crisis helplines available globally and locally.</p>
         </div>
         <div class="card">
-          <h3 style="color: var(--accent-green);">Pronoun Tags</h3>
-          <p>Free self-assignable pronoun roles in Discord.</p>
-          <br>
-          <span class="role-badge" style="color: var(--accent-green); border: 1px solid var(--accent-green);">He/Him</span>
-          <span class="role-badge" style="color: var(--accent-green); border: 1px solid var(--accent-green);">She/Her</span>
-          <span class="role-badge" style="color: var(--accent-green); border: 1px solid var(--accent-green);">They/Them</span>
-          <span class="role-badge" style="color: var(--accent-green); border: 1px solid var(--accent-green);">Any Pronouns</span>
+          <h3 style="color: var(--accent-green);"><i class="fa-solid fa-book-open"></i> Educational Guides</h3>
+          <p>Explore resources on terminology, LGBTQIA+ history, identity exploration, and helpful tips for allies.</p>
         </div>
         <div class="card">
-          <h3 style="color: var(--accent-pink);">Community Allies & VIPs</h3>
-          <p>Special badges for supporters and event hosts.</p>
-          <br>
-          <span class="role-badge" style="color: var(--accent-pink); border: 1px solid var(--accent-pink);">Server Booster</span>
-          <span class="role-badge" style="color: var(--accent-yellow); border: 1px solid var(--accent-yellow);">Coffee Supporter</span>
+          <h3 style="color: var(--accent-purple);"><i class="fa-solid fa-user-shield"></i> Digital Safety & Care</h3>
+          <p>Learn practical strategies for protecting your privacy online, managing boundaries, and online well-being.</p>
         </div>
       </div>
     </section>
@@ -603,8 +581,8 @@
       <h2>Frequently Asked Questions</h2>
       <br>
       <div class="faq-item">
-        <button class="faq-question">How do I get custom roles? <i class="fa-solid fa-chevron-down"></i></button>
-        <div class="faq-answer">Join our Discord server and navigate to the <code>#roles</code> channel to pick your pronoun and notification roles!</div>
+        <button class="faq-question">How do I access server resources? <i class="fa-solid fa-chevron-down"></i></button>
+        <div class="faq-answer">Check out our <code>#resources</code> channel on Discord or visit the Resources section above!</div>
       </div>
       <div class="faq-item">
         <button class="faq-question">How do I submit art or suggestions? <i class="fa-solid fa-chevron-down"></i></button>
