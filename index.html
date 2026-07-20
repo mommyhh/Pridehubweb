@@ -171,29 +171,6 @@
       color: var(--accent-pink);
     }
 
-    /* Shop Styles */
-    .price {
-      font-size: 1.25rem;
-      font-weight: bold;
-      color: #2be675;
-      margin: 10px 0;
-    }
-
-    .btn-buy {
-      background: var(--accent-purple);
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 4px;
-      width: 100%;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .btn-buy:hover {
-      opacity: 0.9;
-    }
-
     /* Rules List */
     .rules-list {
       display: flex;
@@ -265,7 +242,6 @@
         <ul>
           <li><a onclick="showPage('home')" class="nav-link active" id="link-home">Home</a></li>
           <li><a onclick="showPage('rules')" class="nav-link" id="link-rules">Rules</a></li>
-          <li><a onclick="showPage('shop')" class="nav-link" id="link-shop">Store</a></li>
           <li><a onclick="showPage('donate')" class="nav-link" id="link-donate">Donate</a></li>
           <li><a onclick="showPage('roles')" class="nav-link" id="link-roles">Roles Info</a></li>
           <li><a onclick="showPage('events')" class="nav-link" id="link-events">Events</a></li>
@@ -309,8 +285,8 @@
           <p>We host weekly game nights, movie screenings, art contests, and community discussions.</p>
         </div>
         <div class="card">
-          <h3>Perks & VIP</h3>
-          <p>Support our growing hub and unlock exclusive chat perks, custom roles, and early access!</p>
+          <h3>Community Growth</h3>
+          <p>Support our growing hub and unlock unique ways to connect with active members across the globe!</p>
         </div>
       </div>
     </section>
@@ -341,32 +317,6 @@
       </div>
     </section>
 
-    <section id="shop" class="page">
-      <h2>Role & Perk Shop</h2>
-      <p style="color: var(--text-muted); margin-top: 5px;">Purchase server perks and support community maintenance.</p>
-      
-      <div class="grid">
-        <div class="card">
-          <h3>VIP Tier</h3>
-          <p>Get exclusive access to VIP lounge channels, image permissions in all chats, and a special VIP role badge.</p>
-          <div class="price">$4.99 / month</div>
-          <button class="btn-buy" onclick="alert('Redirecting to checkout system...')">Purchase VIP</button>
-        </div>
-        <div class="card">
-          <h3>Custom Role Package</h3>
-          <p>Create your own custom name, color, and icon role displayed prominently on the member sidebar.</p>
-          <div class="price">$9.99 / lifetime</div>
-          <button class="btn-buy" onclick="alert('Redirecting to checkout system...')">Buy Custom Role</button>
-        </div>
-        <div class="card">
-          <h3>Supporter Tier</h3>
-          <p>Shows your support for the hub! Grants a unique colored supporter role and priority queue for events.</p>
-          <div class="price">$2.99 / month</div>
-          <button class="btn-buy" onclick="alert('Redirecting to checkout system...')">Get Supporter</button>
-        </div>
-      </div>
-    </section>
-
     <section id="donate" class="page">
       <h2>Donate to Pride Hub</h2>
       <p style="color: var(--text-muted); margin-top: 5px;">All donations go directly towards server upgrades, event prize pools, and hosting costs.</p>
@@ -393,8 +343,8 @@
           <p>Free self-assignable roles available via our reaction-roles channel to express your identity.</p>
         </div>
         <div class="card">
-          <h3 style="color: #eb459e;">VIP & Supporters</h3>
-          <p>Awesome members who help fund our community expenses and keep our hub ad-free.</p>
+          <h3 style="color: #eb459e;">Supporters & VIPs</h3>
+          <p>Awesome members who help keep our hub active, ad-free, and growing!</p>
         </div>
       </div>
     </section>
@@ -420,7 +370,7 @@
       <div class="card" style="margin-top: 1rem;">
         <h3>Website Launch! 🎉</h3>
         <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 10px;">Posted today by Staff</p>
-        <p>We are excited to launch our official website portal! Here you can easily check rules, buy VIP perks, donate, and keep up with community updates.</p>
+        <p>We are excited to launch our official website portal! Here you can easily check rules, donate, and keep up with community updates.</p>
       </div>
     </section>
 
@@ -464,10 +414,10 @@
 
     <section id="contact" class="page">
       <h2>Support & Enquiries</h2>
-      <div class="card" style="max-width: 600px; margin: 1rem auto;">
+      <div class="card" style="max-width: 600px; margin: 1rem auto; text-align: center;">
         <h3>Need Help?</h3>
-        <p style="margin-bottom: 1rem;">If you have questions regarding store purchases or server moderation, reach out via Discord.</p>
-        <a href="https://discord.gg/PGTDgtwEkG" target="_blank" class="btn-buy" style="display: block; text-align: center; text-decoration: none;">
+        <p style="margin-bottom: 1rem;">If you have questions regarding server moderation or guidelines, reach out via Discord.</p>
+        <a href="https://discord.gg/PGTDgtwEkG" target="_blank" class="btn-join" style="display: inline-flex; text-decoration: none;">
           Open a Ticket in Discord
         </a>
       </div>
@@ -478,7 +428,6 @@
   <footer>
     <div class="footer-links">
       <a onclick="showPage('rules')">Rules</a>
-      <a onclick="showPage('shop')">Store</a>
       <a onclick="showPage('donate')">Donate</a>
       <a href="https://buymeacoffee.com/pridehub" target="_blank">Buy Me a Coffee</a>
       <a href="https://discord.gg/PGTDgtwEkG" target="_blank">Discord Invite</a>
