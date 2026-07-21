@@ -9,6 +9,7 @@
   <link rel="apple-touch-icon" href="1000014352.png">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
   <style>
     :root {
       --bg-dark: #121214;
@@ -99,7 +100,20 @@
       transition: transform 0.2s ease;
     }
 
-    .logo:hover .logo-img {
+    .logo-fallback {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: #111;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-pink);
+      font-size: 1.2rem;
+    }
+
+    .logo:hover .logo-img, .logo:hover .logo-fallback {
       transform: scale(1.05);
     }
 
@@ -174,7 +188,6 @@
       transform: translateY(-2px);
     }
 
-    /* Mobile Menu Toggle Button */
     .menu-toggle {
       display: none;
       background: none;
@@ -208,7 +221,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Grid Layouts & Responsive Cards */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -233,7 +245,6 @@
       color: var(--accent-pink);
     }
 
-    /* Rainbow Styled Rules List */
     .rules-list {
       display: flex;
       flex-direction: column;
@@ -270,7 +281,6 @@
       line-height: 1.4;
     }
 
-    /* Hero Banner */
     .hero {
       text-align: center;
       padding: 3rem 1rem;
@@ -292,7 +302,6 @@
       margin: 0 auto;
     }
 
-    /* FAQ Accordion Styling */
     .faq-item {
       background-color: var(--bg-card);
       border-radius: 8px;
@@ -327,7 +336,6 @@
       display: block;
     }
 
-    /* Footer */
     footer {
       background-color: var(--bg-header);
       padding: 2rem 1rem;
@@ -355,7 +363,6 @@
       color: var(--text-main);
     }
 
-    /* Mobile Responsive Media Queries */
     @media (max-width: 900px) {
       .menu-toggle {
         display: block;
@@ -411,7 +418,8 @@
   <header>
     <div class="nav-container">
       <a href="#" onclick="showPage('home')" class="logo">
-        <img src="1000014352.png" alt="Pride Hub Logo" class="logo-img" onerror="this.style.display='none'">
+        <img src="1000014352.png" alt="Pride Hub Logo" class="logo-img" id="mainLogoImg" onerror="handleLogoError(this)">
+        <div class="logo-fallback" id="mainLogoFallback"><i class="fa-solid fa-gear"></i></div>
         Pride Hub
       </a>
 
@@ -625,6 +633,11 @@
   </footer>
 
   <script>
+    function handleLogoError(img) {
+      img.style.display = 'none';
+      document.getElementById('mainLogoFallback').style.display = 'inline-flex';
+    }
+
     function showPage(pageId) {
       const pages = document.querySelectorAll('.page');
       pages.forEach(page => page.classList.remove('active'));
