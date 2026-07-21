@@ -1,1 +1,1 @@
-# Pridehubweb
+# Pridehub
