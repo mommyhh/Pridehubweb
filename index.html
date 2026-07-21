@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pride Hub | Official Discord Web Portal</title>
+  
+  <link rel="icon" type="image/png" href="1000014352.png">
+  <link rel="apple-touch-icon" href="1000014352.png">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
@@ -85,7 +89,6 @@
       text-decoration: none;
     }
 
-    /* Replaced gray box/placeholder with rainbow logo image styling */
     .logo-img {
       width: 42px;
       height: 42px;
@@ -408,7 +411,7 @@
   <header>
     <div class="nav-container">
       <a href="#" onclick="showPage('home')" class="logo">
-        <img src="1000014352.png" alt="Pride Hub Logo" class="logo-img">
+        <img src="1000014352.png" alt="Pride Hub Logo" class="logo-img" onerror="this.style.display='none'">
         Pride Hub
       </a>
 
@@ -622,7 +625,6 @@
   </footer>
 
   <script>
-    // Page Switcher Script
     function showPage(pageId) {
       const pages = document.querySelectorAll('.page');
       pages.forEach(page => page.classList.remove('active'));
@@ -636,7 +638,6 @@
       const selectedLink = document.getElementById('link-' + pageId);
       if (selectedLink) selectedLink.classList.add('active');
 
-      // Close mobile menu on page selection
       const navMenu = document.getElementById('navMenu');
       if (navMenu.classList.contains('open')) {
         navMenu.classList.remove('open');
@@ -645,7 +646,6 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Mobile Navigation Toggle
     const menuToggle = document.getElementById('menuToggle');
     const navMenu = document.getElementById('navMenu');
 
@@ -653,7 +653,6 @@
       navMenu.classList.toggle('open');
     });
 
-    // FAQ Accordion Script
     const faqQuestions = document.querySelectorAll('.faq-question');
     faqQuestions.forEach(btn => {
       btn.addEventListener('click', () => {
@@ -662,7 +661,6 @@
       });
     });
 
-    // South Australia Real-Time Clock Function
     function updateSAClock() {
       const options = {
         timeZone: 'Australia/Adelaide',
