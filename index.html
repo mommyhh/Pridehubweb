@@ -59,6 +59,8 @@
       justify-content: space-between;
       align-items: center;
       border-bottom: 1px solid #1f2023;
+      flex-wrap: wrap;
+      gap: 8px;
     }
 
     .sa-time-badge {
@@ -66,6 +68,14 @@
       align-items: center;
       gap: 6px;
       color: var(--accent-pink);
+      font-weight: 600;
+    }
+
+    .live-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent-green);
       font-weight: 600;
     }
 
@@ -117,7 +127,7 @@
       transform: scale(1.05);
     }
 
-    /* Desktop Navigation */
+    /* Navigation */
     nav ul {
       display: flex;
       list-style: none;
@@ -245,6 +255,18 @@
       color: var(--accent-pink);
     }
 
+    /* Setup Banner Notice */
+    .setup-banner {
+      background: rgba(88, 101, 242, 0.15);
+      border: 1px solid var(--accent-purple);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    /* Rules Styling */
     .rules-list {
       display: flex;
       flex-direction: column;
@@ -302,6 +324,33 @@
       margin: 0 auto;
     }
 
+    /* Discord Live Member List Items */
+    .discord-member {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px;
+      border-bottom: 1px solid #2b2d31;
+    }
+
+    .discord-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+    }
+
+    .discord-status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .status-online { background-color: #23a55a; }
+    .status-idle { background-color: #f0b232; }
+    .status-dnd { background-color: #f23f43; }
+
+    /* FAQ */
     .faq-item {
       background-color: var(--bg-card);
       border-radius: 8px;
@@ -410,8 +459,11 @@
 
   <div class="top-bar">
     <span>🏳️‍🌈 Official Pride Hub Community Portal</span>
+    <span class="live-status-badge">
+      <i class="fa-solid fa-circle" style="font-size:0.6rem;"></i> <span id="live-online-count">Loading Live Stats...</span>
+    </span>
     <span class="sa-time-badge">
-      <i class="fa-regular fa-clock"></i> South Australia Time: <span id="sa-clock">Loading...</span>
+      <i class="fa-regular fa-clock"></i> South Australia: <span id="sa-clock">Loading...</span>
     </span>
   </div>
 
@@ -430,12 +482,12 @@
       <nav id="navMenu">
         <ul>
           <li><a onclick="showPage('home')" class="nav-link active" id="link-home">Home</a></li>
+          <li><a onclick="showPage('live')" class="nav-link" id="link-live">Live Discord</a></li>
           <li><a onclick="showPage('rules')" class="nav-link" id="link-rules">Rules</a></li>
           <li><a onclick="showPage('donate')" class="nav-link" id="link-donate">Donate</a></li>
           <li><a onclick="showPage('resources')" class="nav-link" id="link-resources">Resources</a></li>
           <li><a onclick="showPage('events')" class="nav-link" id="link-events">Events</a></li>
           <li><a onclick="showPage('announcements')" class="nav-link" id="link-announcements">News</a></li>
-          <li><a onclick="showPage('gallery')" class="nav-link" id="link-gallery">Gallery</a></li>
           <li><a onclick="showPage('staff')" class="nav-link" id="link-staff">Staff</a></li>
           <li><a onclick="showPage('faq')" class="nav-link" id="link-faq">FAQ</a></li>
           <li><a onclick="showPage('contact')" class="nav-link" id="link-contact">Support</a></li>
@@ -457,7 +509,7 @@
 
     <section id="home" class="page active">
       <div class="hero">
-        <h1>Welcome to Pride Hub! 🏳️‍🌈</h1>
+        <h1 id="discord-server-name">Welcome to Pride Hub! 🏳️‍🌈</h1>
         <p>A safe, friendly, and inclusive global Discord community for LGBTQIA+ individuals, allies, and supporters.</p>
         <br>
         <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
@@ -465,13 +517,18 @@
             <i class="fa-brands fa-discord"></i> Join Discord Server
           </a>
           <a href="https://buymeacoffee.com/pridehub" target="_blank" class="btn-coffee" style="padding: 12px 24px; font-size: 1.1rem;">
-            <i class="fa-solid fa-mug-hot"></i> Support the Community
+            <i class="fa-solid fa-mug-hot"></i> Support Community
           </a>
         </div>
       </div>
 
-      <h2>Community Highlights</h2>
+      <h2>Live Community Overview</h2>
       <div class="grid">
+        <div class="card">
+          <h3><i class="fa-solid fa-users"></i> Active Online Members</h3>
+          <p id="card-online-members" style="font-size: 1.5rem; font-weight: bold; margin: 10px 0; color: var(--accent-green);">Fetching...</p>
+          <p>Connect with members online right now in chat or voice channels!</p>
+        </div>
         <div class="card">
           <h3><i class="fa-solid fa-shield-halved"></i> Safe & Moderated Space</h3>
           <p>Zero tolerance for hate speech, harassment, or discrimination. Be yourself in a completely judgment-free zone!</p>
@@ -480,9 +537,32 @@
           <h3><i class="fa-solid fa-calendar-check"></i> Active Weekly Events</h3>
           <p>We host game nights, movie streams, art contests, and open community discussions across multiple timezones.</p>
         </div>
+      </div>
+
+      <br><br>
+      <h2>Interactive Server Preview</h2>
+      <div style="margin-top: 1rem; width: 100%; display: flex; justify-content: center;">
+        <iframe src="https://discord.com/widget?id=1348301131154587780&theme=dark" width="100%" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" style="max-width: 800px; border-radius: 8px; border: 1px solid #2b2d31;"></iframe>
+      </div>
+    </section>
+
+    <section id="live" class="page">
+      <h2>Live Server Activity 🟢</h2>
+      <p style="color: var(--text-muted); margin-top: 5px; margin-bottom: 1.5rem;">Real-time feed fetched directly from Discord's Server API.</p>
+
+      <div class="setup-banner" id="setupNotice">
+        <strong>⚙️ Discord Settings Tip:</strong> If live members do not load below, make sure the Discord Server Widget is enabled:
+        <br><em>Discord Server Settings ➔ Widget ➔ Enable Server Widget = ON</em>.
+      </div>
+
+      <div class="grid">
         <div class="card">
-          <h3><i class="fa-solid fa-book"></i> Helpful Resources</h3>
-          <p>Discover educational guides, digital wellness tips, and support services available across our hub.</p>
+          <h3><i class="fa-solid fa-signal"></i> Active Channels</h3>
+          <div id="live-channels-list" style="margin-top: 10px;">Loading active channels...</div>
+        </div>
+        <div class="card">
+          <h3><i class="fa-solid fa-user-check"></i> Online Members & Guests</h3>
+          <div id="live-members-list" style="margin-top: 10px; max-height: 400px; overflow-y: auto;">Loading online members...</div>
         </div>
       </div>
     </section>
@@ -566,32 +646,19 @@
     <section id="announcements" class="page">
       <h2>Community News</h2>
       <div class="card" style="margin-top: 1rem;">
-        <h3>Portal Upgrade Live! 🚀</h3>
+        <h3>Portal Live Discord Integration Active! 🚀</h3>
         <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 10px;">Posted by Staff Team</p>
-        <p>Our website portal is now fully mobile and desktop optimized with live local timezone support (South Australia ACST/ACDT) and mobile navigation menus.</p>
-      </div>
-    </section>
-
-    <section id="gallery" class="page">
-      <h2>Community Showcase</h2>
-      <div class="grid">
-        <div class="card" style="text-align: center; padding: 3rem 1rem;">
-          <i class="fa-solid fa-palette" style="font-size: 3rem; color: var(--text-muted); margin-bottom: 1rem;"></i>
-          <p>Community fan art, memes, and event screenshots are featured here!</p>
-        </div>
+        <p>Our web portal is now synced directly with Discord's live API to display real-time online members, active channels, and status counts!</p>
       </div>
     </section>
 
     <section id="staff" class="page">
       <h2>Meet the Team</h2>
+      <p style="color: var(--text-muted); margin-bottom: 1rem;">Online staff members are automatically highlighted below in real-time!</p>
       <div class="grid">
         <div class="card">
-          <h3>Management Team</h3>
-          <p>Dedicated admins managing community operations, server safety, and development.</p>
-        </div>
-        <div class="card">
-          <h3>Moderation Team</h3>
-          <p>Active global moderators responding to support tickets and keeping chats friendly.</p>
+          <h3><i class="fa-solid fa-user-tie"></i> Online Management & Mods</h3>
+          <div id="live-staff-list" style="margin-top: 10px;">Checking live staff status...</div>
         </div>
       </div>
     </section>
@@ -633,6 +700,9 @@
   </footer>
 
   <script>
+    // Discord Server Widget Integration ID
+    const DISCORD_SERVER_ID = "1348301131154587780";
+
     function handleLogoError(img) {
       img.style.display = 'none';
       document.getElementById('mainLogoFallback').style.display = 'inline-flex';
@@ -688,6 +758,81 @@
 
     setInterval(updateSAClock, 1000);
     updateSAClock();
+
+    // Fetch Live Data directly from Discord Widget API
+    async function fetchDiscordData() {
+      try {
+        const res = await fetch(`https://discord.com/api/guilds/${DISCORD_SERVER_ID}/widget.json`);
+        if (!res.ok) throw new Error("Widget disabled or invalid ID");
+        
+        const data = await res.json();
+        
+        // Update Server Name if available
+        if (data.name) {
+          document.getElementById('discord-server-name').innerText = `Welcome to ${data.name}! 🏳️‍🌈`;
+        }
+
+        // Update Online Member Counts
+        const presenceCount = data.presence_count || (data.members ? data.members.length : 0);
+        document.getElementById('live-online-count').innerHTML = `<b>${presenceCount}</b> Members Online`;
+        document.getElementById('card-online-members').innerText = `${presenceCount} Online Now`;
+
+        // Render Active Channels
+        const channelsList = document.getElementById('live-channels-list');
+        if (data.channels && data.channels.length > 0) {
+          channelsList.innerHTML = data.channels.map(ch => 
+            `<div style="padding: 6px 0; border-bottom: 1px solid #2b2d31;"><i class="fa-solid fa-hashtag" style="color:var(--text-muted);"></i> <strong>${ch.name}</strong></div>`
+          ).join('');
+        } else {
+          channelsList.innerHTML = `<p style="color: var(--text-muted);">No active public voice/text channels listed currently.</p>`;
+        }
+
+        // Render Online Members & Staff
+        const membersList = document.getElementById('live-members-list');
+        const staffList = document.getElementById('live-staff-list');
+
+        if (data.members && data.members.length > 0) {
+          membersList.innerHTML = data.members.map(m => `
+            <div class="discord-member">
+              <img src="${m.avatar_url}" class="discord-avatar" alt="${m.username}" onerror="this.src='https://cdn.discordapp.com/embed/avatars/0.png'">
+              <div>
+                <strong>${m.username}</strong>
+                ${m.game ? `<div style="font-size:0.75rem; color:var(--text-muted);">Playing ${m.game.name}</div>` : ''}
+              </div>
+              <span class="discord-status-dot status-${m.status}" style="margin-left:auto;" title="Status: ${m.status}"></span>
+            </div>
+          `).join('');
+
+          // Filter Staff members if present in widget data
+          const staffMembers = data.members.filter(m => m.username.toLowerCase().includes('admin') || m.username.toLowerCase().includes('mod') || m.username.toLowerCase().includes('staff'));
+          if (staffMembers.length > 0) {
+            staffList.innerHTML = staffMembers.map(m => `
+              <div class="discord-member">
+                <img src="${m.avatar_url}" class="discord-avatar" alt="${m.username}">
+                <div><strong>${m.username}</strong></div>
+                <span class="discord-status-dot status-${m.status}" style="margin-left:auto;"></span>
+              </div>
+            `).join('');
+          } else {
+            staffList.innerHTML = `<p style="color: var(--text-muted);">Staff are online on Discord! Open a support ticket if you need assistance.</p>`;
+          }
+
+        } else {
+          membersList.innerHTML = `<p style="color: var(--text-muted);">Join our server to see live online members!</p>`;
+        }
+
+      } catch (err) {
+        console.warn("Discord widget fetch info:", err);
+        document.getElementById('live-online-count').innerHTML = `<a href="https://discord.gg/PGTDgtwEkG" target="_blank" style="color: var(--accent-pink); text-decoration: none;">Join Discord</a>`;
+        document.getElementById('card-online-members').innerText = `Active Community`;
+        document.getElementById('live-channels-list').innerHTML = `<p style="color: var(--text-muted);">Enable "Server Widget" in Discord settings to display active channels!</p>`;
+        document.getElementById('live-members-list').innerHTML = `<p style="color: var(--text-muted);">Enable "Server Widget" in Discord settings to display online members!</p>`;
+      }
+    }
+
+    // Auto Refresh live Discord data every 30 seconds
+    fetchDiscordData();
+    setInterval(fetchDiscordData, 30000);
   </script>
 </body>
 </html>
