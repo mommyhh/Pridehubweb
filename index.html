@@ -81,15 +81,23 @@
       -webkit-text-fill-color: transparent;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       text-decoration: none;
     }
 
+    /* Replaced gray box/placeholder with rainbow logo image styling */
     .logo-img {
-      width: 40px;
-      height: 40px;
-      border-radius: 8px;
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
       object-fit: cover;
+      box-shadow: 0 0 10px rgba(235, 69, 158, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: transform 0.2s ease;
+    }
+
+    .logo:hover .logo-img {
+      transform: scale(1.05);
     }
 
     /* Desktop Navigation */
@@ -400,7 +408,7 @@
   <header>
     <div class="nav-container">
       <a href="#" onclick="showPage('home')" class="logo">
-        <img src="file_00000000d64481fbb17f65f91ad75c8d.png" alt="Pride Hub Logo" class="logo-img">
+        <img src="1000014352.png" alt="Pride Hub Logo" class="logo-img">
         Pride Hub
       </a>
 
